@@ -1,0 +1,44 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:10
+    container_name: laravel-links-postgres
+    restart: always
+    volumes:
+      - "postgres-data:/var/lib/postgresql/data"
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=laravel-links-api
+    ports:
+      - "8020:5432"
+    networks:
+      - laravel-links-network
+  php:
+    build: etc/php-fpm
+    container_name: laravel-links-php
+    restart: always
+    volumes:
+      - ./:/var/www/laravel
+      - ./logs/laravel:/var/www/laravel/storage/logs/
+    networks:
+      - laravel-links-network
+  nginx:
+    build: etc/nginx
+    container_name: laravel-links-api
+    restart: always
+    ports:
+      - '8010:80'
+    depends_on:
+      - php
+    links:
+      - php
+    volumes:
+      - ./logs/nginx/:/var/log/nginx
+    networks:
+      - laravel-links-network
+networks:
+  laravel-links-network:
+    driver: bridge
+volumes:
+  postgres-data:

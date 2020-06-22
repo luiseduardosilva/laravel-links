@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="laravel-links-api@192.168.15.6" uuid="b6ce8018-6dcf-4447-8b22-19b1da6343c3">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://192.168.15.6:8020/laravel-links-api</jdbc-url>
+    </data-source>
+  </component>
+</project>
